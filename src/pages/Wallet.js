@@ -5,6 +5,11 @@ import WalletForm from '../components/WalletForm';
 import { populateCurrenciesAction, fetchExchangeRates } from '../actions';
 
 class Wallet extends React.Component {
+  constructor() {
+    super();
+    this.createExpense = this.createExpense.bind(this);
+  }
+
   componentDidMount() {
     this.fetchCurrencies();
   }
@@ -66,7 +71,7 @@ class Wallet extends React.Component {
               <th>Moeda de conversão</th>
               <th>Editar/Excluir</th>
             </tr>
-            {expenses.map((expense) => this.createExpense(expense))}
+            {expenses.length > 0 && this.createExpense()}
           </tbody>
         </table>
       </div>
@@ -85,7 +90,7 @@ Wallet.propTypes = {
 const mapStateToProps = (state) => ({
   email: state.user.email,
   totalWalletValue: state.wallet.totalWalletValue,
-  expanses: state.wallet.expenses,
+  expenses: state.wallet.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({
