@@ -4,7 +4,6 @@ import Login from './pages/Login';
 import Wallet from './pages/Wallet';
 
 function App() {
-  return <div>Hello, TrybeWallet!</div>;
   return (
     <Switch>
       <Route exact path="/" component={ Login } />
