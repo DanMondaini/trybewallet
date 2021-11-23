@@ -40,7 +40,7 @@ class Wallet extends React.Component {
   }
 
   render() {
-    const { email, totalWalletValue } = this.props;
+    const { email, totalWalletValue, expenses } = this.props;
     return (
       <div>
         <header>
@@ -66,6 +66,7 @@ class Wallet extends React.Component {
               <th>Moeda de conversão</th>
               <th>Editar/Excluir</th>
             </tr>
+            {expenses.map((expense) => this.createExpense(expense))}
           </tbody>
         </table>
       </div>
