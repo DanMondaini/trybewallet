@@ -17,6 +17,28 @@ class Wallet extends React.Component {
     populateCurrencies(filteredCurrencies);
   }
 
+  createExpense() {
+    const { expenses } = this.props;
+    return expenses.map((expense) => {
+      const currencyName = expense.exchangeRates[expense.currency];
+      const currency = currencyName.name.replace('/Real Brasileiro', '');
+      const convertedValue = parseFloat((currencyName.ask)).toFixed(2);
+      const total = parseFloat((expense.value * currencyName.ask)).toFixed(2);
+      return (
+        <tr key={ expense.id }>
+          <td>{expense.description}</td>
+          <td>{expense.tag}</td>
+          <td>{expense.method}</td>
+          <td>{expense.value}</td>
+          <td>{currency}</td>
+          <td>{convertedValue}</td>
+          <td>{total}</td>
+          <td>Real</td>
+        </tr>
+      );
+    });
+  }
+
   render() {
     const { email, totalWalletValue } = this.props;
     return (
@@ -56,11 +78,13 @@ Wallet.propTypes = {
   getExchangeRates: PropTypes.func.isRequired,
   populateCurrencies: PropTypes.func.isRequired,
   totalWalletValue: PropTypes.number.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
   totalWalletValue: state.wallet.totalWalletValue,
+  expanses: state.wallet.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({
