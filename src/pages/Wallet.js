@@ -99,3 +99,5 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
+
+// Consultei o repo do Cláudio Cassimiro para o req 7: https://github.com/tryber/sd-015-b-project-trybewallet/pull/22/commits/2e87cfc4e087e1bd271cb4742f9db9e057c1832a
